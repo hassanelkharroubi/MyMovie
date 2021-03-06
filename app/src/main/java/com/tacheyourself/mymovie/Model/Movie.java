@@ -1,4 +1,4 @@
-package com.tacheyourself.mymovie;
+package com.tacheyourself.mymovie.Model;
 
 public class Movie {
 
