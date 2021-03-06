@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tacheyourself.mymovie.R;
+import com.tacheyourself.mymovie.utils.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,9 +45,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.movieTitle.setText(_movies.get(position).getmTitle());
-        holder.releaseDate.setText(Integer.toString(_movies.get(position).getmYear()));
-        holder.movieImage.setImageBitmap(getBitmapFromURL(_movies.get(position).getmLinkImage()));
+        holder.movieTitle.setText(_movies.get(position).getTitle());
+        holder.releaseDate.setText(Integer.toString(_movies.get(position).getYear()));
+        holder.movieImage.setImageBitmap(Utils.getBitmapFromURL(_movies.get(position).getLinkImage()));
     }
 
     @Override
@@ -54,21 +55,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
         return _movies.size();
     }
 
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.e("Exception",e.getMessage());
-            return null;
-        }
-    }
+
 
     class Holder extends RecyclerView.ViewHolder {
 
