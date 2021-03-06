@@ -15,69 +15,69 @@ public class Movie {
 
     }
 
-    public Movie(int mId, String mTitle, String mDescription, String mLanguage, String mLinkMovie, String mLinkImage, int mYear) {
-        this.mId = mId;
-        this.mTitle = mTitle;
-        this.mDescription = mDescription;
-        this.mLanguage = mLanguage;
-        this.mLinkMovie = mLinkMovie;
-        this.mLinkImage = mLinkImage;
-        this.mYear = mYear;
+    public Movie(int id, String title, String description, String language, String linkMovie, String linkImage, int year) {
+        mId = id;
+        mTitle = title;
+        mDescription = description;
+        mLanguage = language;
+        mLinkMovie = linkMovie;
+        mLinkImage = linkImage;
+        mYear = year;
     }
 
-    public int getmId() {
+    public int getId() {
         return mId;
     }
 
-    public int getmYear() {
-        return mYear;
+    public void setId(int id) {
+        mId = id;
     }
 
-    public String getmDescription() {
-        return mDescription;
-    }
-
-    public String getmLanguage() {
-        return mLanguage;
-    }
-
-    public String getmLinkImage() {
-        return mLinkImage;
-    }
-
-    public String getmLinkMovie() {
-        return mLinkMovie;
-    }
-
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setmDescription(String mDescription) {
-        this.mDescription = mDescription;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
-    public void setmId(int mId) {
-        this.mId = mId;
+    public String getDescription() {
+        return mDescription;
     }
 
-    public void setmLanguage(String mLanguage) {
-        this.mLanguage = mLanguage;
+    public void setDescription(String description) {
+        mDescription = description;
     }
 
-    public void setmLinkImage(String mLinkImage) {
-        this.mLinkImage = mLinkImage;
+    public String getLanguage() {
+        return mLanguage;
     }
 
-    public void setmLinkMovie(String mLinkMovie) {
-        this.mLinkMovie = mLinkMovie;
+    public void setLanguage(String language) {
+        mLanguage = language;
     }
 
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
+    public String getLinkMovie() {
+        return mLinkMovie;
     }
 
-    public void setmYear(int mYear) {
-        this.mYear = mYear;
+    public void setLinkMovie(String linkMovie) {
+        mLinkMovie = linkMovie;
+    }
+
+    public String getLinkImage() {
+        return mLinkImage;
+    }
+
+    public void setLinkImage(String linkImage) {
+        mLinkImage = linkImage;
+    }
+
+    public int getYear() {
+        return mYear;
+    }
+
+    public void setYear(int year) {
+        mYear = year;
     }
 }
