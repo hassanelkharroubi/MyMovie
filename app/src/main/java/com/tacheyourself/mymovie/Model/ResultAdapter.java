@@ -44,9 +44,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.movieTitle.setText(_movies.get(position).getmTitle());
-        holder.releaseDate.setText(Integer.toString(_movies.get(position).getmYear()));
-        holder.movieImage.setImageBitmap(getBitmapFromURL(_movies.get(position).getmLinkImage()));
+        holder.movieTitle.setText(_movies.get(position).getTitle());
+        holder.releaseDate.setText(Integer.toString(_movies.get(position).getYear()));
+        holder.movieImage.setImageBitmap(getBitmapFromURL(_movies.get(position).getLinkImage()));
     }
 
     @Override
