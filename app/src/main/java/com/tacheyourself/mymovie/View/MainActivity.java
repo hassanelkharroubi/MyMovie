@@ -1,10 +1,10 @@
-package com.tacheyourself.mymovie;
+package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-
+import com.tacheyourself.mymovie.R;
 
 public class MainActivity extends AppCompatActivity {
 
