@@ -22,7 +22,7 @@
         android:padding="12dp">
 
         <TextView
-            android:id="@+id/ReleaseDate"
+            android:id="@+id/movieTitle"
             android:layout_width="242dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
@@ -32,7 +32,7 @@
             android:textColor="@color/title" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
