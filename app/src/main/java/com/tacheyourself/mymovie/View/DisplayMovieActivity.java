@@ -23,6 +23,7 @@ public class DisplayMovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_movie);
+        getSupportActionBar().hide();
         mVideoView=findViewById(R.id.videoView);
         String url=getIntent().getStringExtra("link");
         Log.d("movie",url);

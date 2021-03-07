@@ -3,6 +3,7 @@ package com.tacheyourself.mymovie.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +29,8 @@ import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class AddMovieActivity extends AppCompatActivity {
@@ -67,10 +70,10 @@ public class AddMovieActivity extends AppCompatActivity {
                 movie.setLinkMovie(link.getText().toString());
                 RequestQueue queue = Volley.newRequestQueue(AddMovieActivity.this);
 
-                String urlInsertion = Utils.URLHOST + "add.php" + movie.getQueryParameters();
+                String urlInsertion = Utils.URLHOST + "add.php";// + movie.getQueryParameters();
                 Log.d( "murl" ,urlInsertion);
 
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, urlInsertion, new Response.Listener<String>() {
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, urlInsertion, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(AddMovieActivity.this, "res : " + response.toString(), Toast.LENGTH_LONG).show();
@@ -81,7 +84,28 @@ public class AddMovieActivity extends AppCompatActivity {
                         Toast.makeText(AddMovieActivity.this, "error : " + error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
-                );
+                ){
+                    @Override
+                    protected Map<String,String> getParams(){
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("title", movie.getTitle());
+                        params.put("description", movie.getDescription());
+                        params.put("language", movie.getLanguage());
+                        params.put("linkMovie", movie.getLinkMovie());
+                        params.put("linkImage", movie.getLinkImage());
+                        params.put("year", Integer.toString(movie.getYear()));
+
+                        return params;
+                    }
+
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        Map<String,String> params = new HashMap<String, String>();
+                        params.put("Content-Type","application/x-www-form-urlencoded");
+                        return params;
+                    }
+
+                };
                 queue.add(stringRequest);
                 Intent intent = new Intent(AddMovieActivity.this,AdminActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
