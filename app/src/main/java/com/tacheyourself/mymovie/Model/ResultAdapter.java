@@ -14,13 +14,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tacheyourself.mymovie.DetailMovieActivity;
+import com.tacheyourself.mymovie.View.DetailMovieActivity;
 import com.tacheyourself.mymovie.R;
 import com.tacheyourself.mymovie.View.AddMovieActivity;
 import com.tacheyourself.mymovie.View.AdminActivity;
 import com.tacheyourself.mymovie.View.MovieListActivity;
 import com.tacheyourself.mymovie.utils.DownloadImageSync;
-import com.tacheyourself.mymovie.utils.Utils;
 
 
 import java.util.ArrayList;

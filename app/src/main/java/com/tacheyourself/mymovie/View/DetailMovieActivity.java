@@ -1,4 +1,4 @@
-package com.tacheyourself.mymovie;
+package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tacheyourself.mymovie.Model.Movie;
+import com.tacheyourself.mymovie.R;
 import com.tacheyourself.mymovie.View.DisplayMovieActivity;
 import com.tacheyourself.mymovie.utils.DownloadImageSync;
 
@@ -70,7 +71,6 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         if(view.getId() ==mPlayButton.getId()) {
 
             Intent intent=new Intent(this, DisplayMovieActivity.class);
-            intent.putExtra("link",movie.getLinkMovie());
             startActivity(intent);
 
         }
