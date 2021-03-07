@@ -29,6 +29,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detail_movie);
 
         init();
@@ -66,11 +67,12 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
 
-        Log.d("clicked","hehoi "+movie.getLinkMovie());
+
 
         if(view.getId() ==mPlayButton.getId()) {
 
             Intent intent=new Intent(this, DisplayMovieActivity.class);
+            intent.putExtra("link",movie.getLinkMovie());
             startActivity(intent);
 
         }
