@@ -17,8 +17,6 @@ import java.net.URL;
 
 public class Utils {
 
-    public static final String URLHost = "https://wisdcom.000webhostapp.com/scripts/";
-
     public static Bitmap getBitmapFromURL(String src) {
         try {
             URL url = new URL(src);

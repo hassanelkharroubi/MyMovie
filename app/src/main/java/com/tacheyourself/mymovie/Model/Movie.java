@@ -25,6 +25,14 @@ public class Movie {
         mYear = year;
     }
 
+    public Movie(String title, String description, String language, String linkImage, int year) {
+        mTitle = title;
+        mDescription = description;
+        mLanguage = language;
+        mLinkImage = linkImage;
+        mYear = year;
+    }
+
     public int getId() {
         return mId;
     }
@@ -85,8 +93,8 @@ public class Movie {
      * @ query parameters
      */
     public String getQueryParameters(){
-        String url="?title"+mTitle+"&description"+mDescription+"&language"
-                +mLanguage+"&linkMovie"+mLinkMovie+"&linkImage"+mLinkImage+"&year"+mYear;
+        String url="?title="+mTitle+"&description="+mDescription+"&language="
+                +mLanguage+"&linkMovie="+mLinkMovie+"&linkImage="+mLinkImage+"&year="+mYear;
 
         return url;
     }

@@ -11,14 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMovie">
-        <activity android:name=".View.MainActivity"/>
-        <activity android:name=".View.AdminActivity" />
-        <activity android:name=".View.MovieList">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".View.MovieList"></activity>
+        <activity android:name=".View.AdminActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".View.MainActivity">
+
         </activity>
     </application>
 
