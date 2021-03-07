@@ -1,6 +1,7 @@
 package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.tacheyourself.mymovie.Model.Movie;
+import com.tacheyourself.mymovie.Model.ResultAdapter;
 import com.tacheyourself.mymovie.R;
 import com.tacheyourself.mymovie.utils.Utils;
 
@@ -30,6 +32,7 @@ public class MovieList extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RequestQueue mRequestQueue;
+    private ResultAdapter mResultAdapter;
 
     private List<Movie> mMovieList;
 
@@ -39,8 +42,19 @@ public class MovieList extends AppCompatActivity {
         setContentView(R.layout.activity_movie_list);
         mMovieList=new ArrayList<>();
 
+
         mRecyclerView=findViewById(R.id.recylerView);
-        getMovies();
+        mMovieList=new ArrayList<>();
+        mMovieList=getMovies();
+        Log.d("hhh",mMovieList.size()+"");
+        mResultAdapter=new ResultAdapter(this, (ArrayList<Movie>) mMovieList);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mResultAdapter);
+
+
+
+
 
     }
 
@@ -52,15 +66,13 @@ public class MovieList extends AppCompatActivity {
 
         String url = getUrl("read.php");
 
-        Log.d("movielist",url);
+
 
 
 // Request a string response from the provided URL.
         JsonArrayRequest JsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-
-                Log.d("movieList",response.toString());
 
                 JSONObject jsonObject;
                 for (int i=0; i<response.length(); i++){
@@ -71,14 +83,22 @@ public class MovieList extends AppCompatActivity {
 
                         int id= jsonObject.getInt("id");
                         String title=jsonObject.getString("title");
+                        Log.d("movie",title);
 
                         String description= jsonObject.getString("description");
+                        Log.d("movie",description);
                         String language=jsonObject.getString("language");
+                        Log.d("movie",language);
                         String linkMovie=jsonObject.getString("linkMovie");
+                        Log.d("movie",linkMovie);
                         String linkImage=jsonObject.getString("linkImage");
+                        Log.d("movie",linkImage);
                         int year=jsonObject.getInt("year");
+                        Log.d("movie",year+"");
 
                         mMovieList.add(new Movie(id,title,description,language,linkMovie,linkImage,year));
+                        Log.d("movie",mMovieList.size()+"");
+                        mResultAdapter.notifyDataSetChanged();
 
 
 
@@ -99,35 +119,12 @@ public class MovieList extends AppCompatActivity {
             }
         });
 
-
-
-/*
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("movielist",response);
-
-
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Log.d("movielist",error.getMessage());
-
-            }
-        });*/
-
-
-// Add the request to the RequestQueue.
         mRequestQueue.add(JsonArrayRequest);
 
 
 
 
-        return null;
+        return mMovieList;
 
     }
 
