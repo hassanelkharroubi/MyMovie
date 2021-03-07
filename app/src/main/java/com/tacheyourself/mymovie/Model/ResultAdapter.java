@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.tacheyourself.mymovie.R;
+import com.tacheyourself.mymovie.utils.DownloadImageSync;
 import com.tacheyourself.mymovie.utils.Utils;
 
 import java.io.IOException;
@@ -47,7 +48,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.movieTitle.setText(_movies.get(position).getTitle());
         holder.releaseDate.setText(Integer.toString(_movies.get(position).getYear()));
-        holder.movieImage.setImageBitmap(Utils.getBitmapFromURL(_movies.get(position).getLinkImage()));
+        new DownloadImageSync(holder.movieImage).execute(_movies.get(position).getLinkImage());
+
     }
 
     @Override
