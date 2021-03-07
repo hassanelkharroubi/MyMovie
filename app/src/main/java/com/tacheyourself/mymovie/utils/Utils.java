@@ -17,6 +17,9 @@ import java.net.URL;
 
 public class Utils {
 
+    public static final String API_KEY = "066896fd01b3125f675c785d1ea214c7";
+    public static final String API_SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY +"&query=";
+
     public static Bitmap getBitmapFromURL(String src) {
         try {
             URL url = new URL(src);
