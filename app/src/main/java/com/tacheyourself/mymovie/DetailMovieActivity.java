@@ -46,15 +46,13 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         mDescriptionView=findViewById(R.id.movieDescription);
         mPlayButton=findViewById(R.id.moviePlay);
         mPlayButton.setOnClickListener(this);
-
         Intent intent=getIntent();
-
        movie=(Movie) intent.getSerializableExtra("movie");
 
         Log.d("detail",movie.getTitle());
        if(movie!=null){
            new DownloadImageSync(movieImageView).execute(movie.getLinkImage());
-
+           Log.d("lien",movie.getLinkMovie());
            mTitleView.setText(movie.getTitle());
            mDescriptionView.setText(movie.getDescription());
            mYearView.setText(movie.getYear()+"");
