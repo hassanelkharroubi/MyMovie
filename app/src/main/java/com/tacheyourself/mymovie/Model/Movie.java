@@ -76,8 +76,21 @@ public class Movie {
     public int getYear() {
         return mYear;
     }
-
     public void setYear(int year) {
         mYear = year;
     }
+
+    /**
+     * to retreive a query parameters to use them in url
+     * @ query parameters
+     */
+    public String getQueryParameters(){
+        String url="?title"+mTitle+"&description"+mDescription+"&language"
+                +mLanguage+"&linkMovie"+mLinkMovie+"&linkImage"+mLinkImage+"&year"+mYear;
+
+        return url;
+    }
+
+
+
 }
