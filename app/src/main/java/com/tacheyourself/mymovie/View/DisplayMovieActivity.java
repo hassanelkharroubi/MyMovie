@@ -30,7 +30,7 @@ public class DisplayMovieActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_display_movie);
-        getSupportActionBar().hide();
+
         mVideoView=findViewById(R.id.videoView);
         getSupportActionBar().hide();
 
