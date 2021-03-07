@@ -14,14 +14,14 @@
         <activity android:name=".DetailMovieActivity"></activity>
         <activity android:name=".View.DisplayMovieActivity" />
         <activity android:name=".View.AdminActivity" />
-        <activity android:name=".View.MovieListActivity">
+        <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.MainActivity" />
+        <activity android:name=".View.MovieListActivity" />
     </application>
 
 </manifest>
