@@ -130,7 +130,7 @@ public class MovieList extends AppCompatActivity {
 
     private String getUrl(String path){
 
-        return Utils.URLHost+path;
+        return Utils.URLHOST+path;
 
     }
 
