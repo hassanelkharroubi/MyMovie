@@ -54,7 +54,7 @@ public class AdminActivity extends AppCompatActivity {
 
         movies = new ArrayList<Movie>();
 
-        resultAdapter = new ResultAdapter(getBaseContext(),movies);
+        resultAdapter = new ResultAdapter(AdminActivity.this,movies);
 
         results.setAdapter(resultAdapter);
 

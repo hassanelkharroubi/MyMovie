@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tacheyourself.mymovie.DetailMovieActivity;
 import com.tacheyourself.mymovie.R;
+import com.tacheyourself.mymovie.View.AddMovieActivity;
+import com.tacheyourself.mymovie.View.AdminActivity;
 import com.tacheyourself.mymovie.View.MovieListActivity;
 import com.tacheyourself.mymovie.utils.DownloadImageSync;
 import com.tacheyourself.mymovie.utils.Utils;
@@ -61,6 +63,20 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
                 }
             });
         }
+
+        if(_context instanceof AdminActivity){
+            holder.movieImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("state","in");
+                    Intent intent = new Intent(_context, AddMovieActivity.class);
+                    intent.putExtra("movie",_movies.get(position));
+                    _context.startActivity(intent);
+
+                }
+            });
+        }
+
 
 
     }
