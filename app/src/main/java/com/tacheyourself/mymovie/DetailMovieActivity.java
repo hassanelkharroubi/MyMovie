@@ -29,6 +29,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
+
         init();
 
 
@@ -38,21 +39,25 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void init(){
-        movieImageView=findViewById(R.id.movieImage);
-        mTitleView=findViewById(R.id.movieTitle);
+
+        movieImageView=findViewById(R.id.imageView);
+        mTitleView=findViewById(R.id.titleMovie);
         mYearView=findViewById(R.id.movieYear);
         mDescriptionView=findViewById(R.id.movieDescription);
         mPlayButton=findViewById(R.id.moviePlay);
+        mPlayButton.setOnClickListener(this);
+
         Intent intent=getIntent();
 
        movie=(Movie) intent.getSerializableExtra("movie");
 
-        Log.d("detail",movie.getQueryParameters());
+        Log.d("detail",movie.getTitle());
        if(movie!=null){
            new DownloadImageSync(movieImageView).execute(movie.getLinkImage());
+
            mTitleView.setText(movie.getTitle());
            mDescriptionView.setText(movie.getDescription());
-           mYearView.setText(movie.getYear());
+           mYearView.setText(movie.getYear()+"");
 
        }
 
@@ -61,6 +66,8 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
+
+        Log.d("clicked","hehoi "+movie.getLinkMovie());
 
         if(view.getId() ==mPlayButton.getId()) {
 
