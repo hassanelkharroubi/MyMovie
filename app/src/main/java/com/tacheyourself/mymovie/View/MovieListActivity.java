@@ -28,7 +28,7 @@ import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MovieList extends AppCompatActivity {
+public class MovieListActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RequestQueue mRequestQueue;
