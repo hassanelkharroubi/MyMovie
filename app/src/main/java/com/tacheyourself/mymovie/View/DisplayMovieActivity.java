@@ -24,7 +24,8 @@ public class DisplayMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_movie);
         mVideoView=findViewById(R.id.videoView);
-        mVideoView.setVideoPath(getIntent().getStringExtra("link"));
+        getIntent().getStringExtra("link");
+        mVideoView.setVideoPath(url);
         mVideoView.setMediaController(new MediaController(this));
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         mVideoView.start();

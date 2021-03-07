@@ -99,13 +99,11 @@ public class MovieListActivity extends AppCompatActivity {
                         int year=jsonObject.getInt("year");
                         Log.d("movie",year+"");
 
-                        for (int j = 0; j <10;j++){
+
                             mMovieList.add(new Movie(id,title,description,language,linkMovie,linkImage,year));
-                            Log.d("movie",mMovieList.size()+"");
-                        }
 
 
-                        mResultAdapter.notifyDataSetChanged();
+
 
 
 
@@ -115,6 +113,7 @@ public class MovieListActivity extends AppCompatActivity {
 
 
                 }
+                mResultAdapter.notifyDataSetChanged();
 
 
 
