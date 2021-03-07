@@ -4,8 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#605353"
+    android:background="@color/background"
     tools:context=".View.AddMovieActivity">
+
+    <Button
+        android:id="@+id/addToDB"
+        android:layout_width="105dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/logo"
+        android:text="Add"
+        android:textColor="@color/year"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/link"
+        android:layout_width="0dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="#12343B"
+        android:ems="10"
+        android:hint="Link To Movie"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:textColor="#EADDDD"
+        android:textColorHint="#EADDDD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addToDB"
+        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/movieImage"
@@ -19,31 +50,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/movieTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:text="Justice league"
-        android:textColor="@color/title"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/releaseDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieImage" />
-
-    <TextView
-        android:id="@+id/releaseDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:text="2020"
-        android:textColor="@color/year"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieImage" />
 
     <TextView
         android:id="@+id/DescL"
@@ -71,33 +77,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/DescL" />
 
-    <EditText
-        android:id="@+id/link"
+    <TextView
+        android:id="@+id/movieTitle"
         android:layout_width="0dp"
-        android:layout_height="46dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="#12343B"
-        android:ems="10"
-        android:hint="Link To Movie"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:textColor="#EADDDD"
-        android:textColorHint="#EADDDD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addToDB"
-        app:layout_constraintHorizontal_bias="0.111"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Justice league"
+        android:textColor="@color/title"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/releaseDate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieImage" />
 
-    <Button
-        android:id="@+id/addToDB"
-        android:layout_width="105dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <TextView
+        android:id="@+id/releaseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:text="2020"
+        android:textColor="@color/year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movieImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
