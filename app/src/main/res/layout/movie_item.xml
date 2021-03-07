@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="8dp"
+        android:adjustViewBounds="true"
         android:background="@drawable/logo"
+        android:scaleType="fitCenter"
         app:srcCompat="@drawable/justice_legue" />
 
     <LinearLayout

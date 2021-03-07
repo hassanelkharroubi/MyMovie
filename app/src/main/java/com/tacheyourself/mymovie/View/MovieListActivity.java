@@ -1,6 +1,7 @@
 package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,8 +50,10 @@ public class MovieListActivity extends AppCompatActivity {
         Log.d("hhh",mMovieList.size()+"");
         mResultAdapter=new ResultAdapter(this, (ArrayList<Movie>) mMovieList);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
         mRecyclerView.setAdapter(mResultAdapter);
+
+
 
 
 
@@ -96,8 +99,12 @@ public class MovieListActivity extends AppCompatActivity {
                         int year=jsonObject.getInt("year");
                         Log.d("movie",year+"");
 
-                        mMovieList.add(new Movie(id,title,description,language,linkMovie,linkImage,year));
-                        Log.d("movie",mMovieList.size()+"");
+                        for (int j = 0; j <10;j++){
+                            mMovieList.add(new Movie(id,title,description,language,linkMovie,linkImage,year));
+                            Log.d("movie",mMovieList.size()+"");
+                        }
+
+
                         mResultAdapter.notifyDataSetChanged();
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -43,7 +44,10 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         mDescriptionView=findViewById(R.id.movieDescription);
         mPlayButton=findViewById(R.id.moviePlay);
         Intent intent=getIntent();
+
        movie=(Movie) intent.getSerializableExtra("movie");
+
+        Log.d("detail",movie.getQueryParameters());
        if(movie!=null){
            new DownloadImageSync(movieImageView).execute(movie.getLinkImage());
            mTitleView.setText(movie.getTitle());

@@ -3,6 +3,8 @@ package com.tacheyourself.mymovie.Model;
 
 import android.content.Context;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tacheyourself.mymovie.DetailMovieActivity;
 import com.tacheyourself.mymovie.R;
+import com.tacheyourself.mymovie.View.MovieListActivity;
 import com.tacheyourself.mymovie.utils.DownloadImageSync;
 import com.tacheyourself.mymovie.utils.Utils;
 
@@ -44,6 +48,21 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
         holder.movieTitle.setText(_movies.get(position).getTitle());
         holder.releaseDate.setText(Integer.toString(_movies.get(position).getYear()));
         new DownloadImageSync(holder.movieImage).execute(_movies.get(position).getLinkImage());
+
+        if(_context instanceof MovieListActivity){
+            holder.movieImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(_context, DetailMovieActivity.class);
+                    intent.putExtra("movie",_movies.get(position));
+                    _context.startActivity(intent);
+
+                }
+            });
+        }
+
+
     }
 
     @Override
@@ -64,6 +83,9 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
             releaseDate = itemView.findViewById(R.id.releaseDate);
             movieTitle = itemView.findViewById(R.id.movieTitle);
             movieImage = itemView.findViewById(R.id.movieImage);
+
+
+
 
         }
     }
