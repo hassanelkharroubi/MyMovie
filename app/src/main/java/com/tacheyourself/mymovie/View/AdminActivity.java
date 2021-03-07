@@ -76,10 +76,11 @@ public class AdminActivity extends AppCompatActivity {
                                 int year = Integer.parseInt(jsonObject.getString("release_date").substring(0,4));
                                 String ImageURL = "https://image.tmdb.org/t/p/w500" + jsonObject.getString("poster_path");
                                 Log.d("result" + i , jsonObject.toString());
-                                movies.add(new Movie(jsonObject.getString("title"),
+                                Movie movie = new Movie(jsonObject.getString("title"),
                                         jsonObject.getString("overview"),jsonObject.getString("original_language"),
-                                        ImageURL, year));
-                                resultAdapter.notifyDataSetChanged();
+                                        ImageURL, year);
+                                movies.add(movie);
+                                //resultAdapter.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
