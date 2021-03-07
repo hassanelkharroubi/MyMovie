@@ -13,6 +13,7 @@
         android:theme="@style/Theme.MyMovie">
         <activity android:name=".View.DetailMovieActivity"/>
         <activity android:name=".View.DisplayMovieActivity" />
+        <activity android:name=".View.AddMovieActivity" />
         <activity android:name=".View.AdminActivity" />
         <activity android:name=".View.MainActivity">
             <intent-filter>

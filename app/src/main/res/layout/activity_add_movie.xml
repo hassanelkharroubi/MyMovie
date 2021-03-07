@@ -76,7 +76,7 @@
         android:id="@+id/link"
         android:layout_width="0dp"
         android:layout_height="46dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:background="#12343B"
