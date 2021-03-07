@@ -54,11 +54,6 @@ public class MovieListActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mResultAdapter);
 
 
-
-
-
-
-
     }
 
 
@@ -68,9 +63,6 @@ public class MovieListActivity extends AppCompatActivity {
          mRequestQueue = Volley.newRequestQueue(this);
 
         String url = getUrl("read.php");
-
-
-
 
 // Request a string response from the provided URL.
         JsonArrayRequest JsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
