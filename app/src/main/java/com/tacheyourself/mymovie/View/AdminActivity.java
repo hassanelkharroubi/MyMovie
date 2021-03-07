@@ -1,6 +1,7 @@
 package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -52,7 +53,7 @@ public class AdminActivity extends AppCompatActivity {
 
         results.setAdapter(resultAdapter);
 
-        results.setLayoutManager(new LinearLayoutManager(this));
+        results.setLayoutManager(new GridLayoutManager(this,2));
 
         Go.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,20 +68,20 @@ public class AdminActivity extends AppCompatActivity {
                         try {
 
                             JSONObject QueryResult = new JSONObject(response);
-                            JSONArray jsonResultArray= QueryResult.getJSONArray("results");
+                            JSONArray jsonResultArray = QueryResult.getJSONArray("results");
 
-                            Toast.makeText(AdminActivity.this, jsonResultArray.toString(), Toast.LENGTH_SHORT).show();
-
-                            for (int i=0;i<jsonResultArray.length();i++){
-                                JSONObject jsonObject=jsonResultArray.getJSONObject(i);
-                                int year = Integer.parseInt(jsonObject.getString("release_date").substring(0,4));
-                                String ImageURL = "https://image.tmdb.org/t/p/w500" + jsonObject.getString("poster_path");
-                                Log.d("result" + i , jsonObject.toString());
-                                Movie movie = new Movie(jsonObject.getString("title"),
-                                        jsonObject.getString("overview"),jsonObject.getString("original_language"),
-                                        ImageURL, year);
-                                movies.add(movie);
-                                //resultAdapter.notifyDataSetChanged();
+                            if (jsonResultArray.length()>0){
+                                for (int i = 0; i < jsonResultArray.length(); i++) {
+                                    JSONObject jsonObject = jsonResultArray.getJSONObject(i);
+                                    int year = Integer.parseInt(jsonObject.getString("release_date").substring(0, 3));
+                                    String ImageURL = "https://image.tmdb.org/t/p/w500" + jsonObject.getString("poster_path");
+                                    //Log.d("result" + i, jsonObject.toString());
+                                    Movie movie = new Movie(jsonObject.getString("title"),
+                                            jsonObject.getString("overview"), jsonObject.getString("original_language"),
+                                            ImageURL, year);
+                                    movies.add(movie);
+                                    resultAdapter.notifyDataSetChanged();
+                                }
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
