@@ -67,6 +67,8 @@ public class AddMovieActivity extends AppCompatActivity {
         addToDB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 movie.setLinkMovie(link.getText().toString());
                 RequestQueue queue = Volley.newRequestQueue(AddMovieActivity.this);
 
