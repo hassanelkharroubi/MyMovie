@@ -1,5 +1,6 @@
 package com.tacheyourself.mymovie.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -58,12 +63,17 @@ public class AdminActivity extends AppCompatActivity {
         Go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(!movies.isEmpty()) movies.clear();
                 RequestQueue requestQueue= Volley.newRequestQueue(getBaseContext());
-                StringRequest stringRequest=new StringRequest(Utils.API_SEARCH_URL + movieToSearch.getText().toString(), new Response.Listener<String>() {
+                String EncodedQuery = "";
+                try {
+                    EncodedQuery = URLEncoder.encode(movieToSearch.getText().toString(),"utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                StringRequest stringRequest=new StringRequest(Utils.API_SEARCH_URL + EncodedQuery, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
-
 
                         try {
 
@@ -73,7 +83,11 @@ public class AdminActivity extends AppCompatActivity {
                             if (jsonResultArray.length()>0){
                                 for (int i = 0; i < jsonResultArray.length(); i++) {
                                     JSONObject jsonObject = jsonResultArray.getJSONObject(i);
-                                    int year = Integer.parseInt(jsonObject.getString("release_date").substring(0, 3));
+                                    String yearString = jsonObject.getString("release_date");
+                                    int year = 0;
+                                    if(!yearString.equals(""))
+                                    year = Integer.parseInt(jsonObject.getString("release_date").substring(0, 4));
+                                    Log.d("movie", i + " : " + year);
                                     String ImageURL = "https://image.tmdb.org/t/p/w500" + jsonObject.getString("poster_path");
                                     //Log.d("result" + i, jsonObject.toString());
                                     Movie movie = new Movie(jsonObject.getString("title"),
@@ -101,6 +115,7 @@ public class AdminActivity extends AppCompatActivity {
                 requestQueue.add(stringRequest);
             }
         });
+
 
 
     }

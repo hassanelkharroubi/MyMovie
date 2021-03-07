@@ -1,6 +1,8 @@
 package com.tacheyourself.mymovie.Model;
 
-public class Movie {
+import java.io.Serializable;
+
+public class Movie implements Serializable {
 
     private int mId;
     private String mTitle;

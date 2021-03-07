@@ -44,7 +44,6 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
         holder.movieTitle.setText(_movies.get(position).getTitle());
         holder.releaseDate.setText(Integer.toString(_movies.get(position).getYear()));
         new DownloadImageSync(holder.movieImage).execute(_movies.get(position).getLinkImage());
-
     }
 
     @Override
