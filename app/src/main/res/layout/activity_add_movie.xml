@@ -23,13 +23,15 @@
 
     <TextView
         android:id="@+id/movieTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Justice league"
         android:textColor="@color/title"
         android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/releaseDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieImage" />
 
@@ -38,12 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:text="2020"
         android:textColor="@color/year"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toEndOf="@+id/movieTitle"
         app:layout_constraintTop_toBottomOf="@+id/movieImage" />
 
     <TextView
@@ -60,10 +60,11 @@
 
     <TextView
         android:id="@+id/desc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:text="N/A"
         android:textColor="@color/title"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,6 +1,7 @@
 package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +18,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,22 +66,19 @@ public class AddMovieActivity extends AppCompatActivity {
             public void onClick(View v) {
                 movie.setLinkMovie(link.getText().toString());
                 RequestQueue queue = Volley.newRequestQueue(AddMovieActivity.this);
-                String urlInsertion = Utils.URLHOST + "/add.php" + movie.getQueryParameters();
-                try {
-                    urlInsertion = URLEncoder.encode(urlInsertion,"utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                Toast.makeText(AddMovieActivity.this, urlInsertion, Toast.LENGTH_SHORT).show();
+
+                String urlInsertion = Utils.URLHOST + "add.php" + movie.getQueryParameters();
+                Log.d( "murl" ,urlInsertion);
+
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, urlInsertion, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(AddMovieActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddMovieActivity.this, "res : " + response.toString(), Toast.LENGTH_LONG).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(AddMovieActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddMovieActivity.this, "error : " + error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }
                 );
