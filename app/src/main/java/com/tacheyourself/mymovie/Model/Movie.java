@@ -37,7 +37,8 @@ public class Movie implements Serializable {
         mImdbID=imdbID;
     }
 
-    public Movie(String title, String description, String language, String linkImage, int year, String imdbID) {
+    public Movie(int id, String title, String description, String language, String linkImage, int year, String imdbID) {
+        mId = id;
         mTitle = title;
         mDescription = description;
         mLanguage = language;
@@ -100,6 +101,7 @@ public class Movie implements Serializable {
     public void setYear(int year) {
         mYear = year;
     }
+
 
     /**
      * to retreive a query parameters to use them in url
