@@ -129,7 +129,7 @@ public class AddMovieActivity extends AppCompatActivity implements View.OnClickL
             Log.d("Add","clicked clicked");
 
             Intent intent = new Intent(this,DisplayMovieActivity.class);
-            intent.putExtra("id","tt097619");
+            intent.putExtra("id","tt0976192");
             startActivity(intent);
 
         }

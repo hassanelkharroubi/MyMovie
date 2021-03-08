@@ -80,6 +80,8 @@ public class DisplayMovieActivity extends AppCompatActivity {
                     } catch (JSONException e) {
 
                         Log.d("Display","error json");
+                        Toast.makeText(DisplayMovieActivity.this, "trailer is not found", Toast.LENGTH_SHORT).show();
+                        finish();
                         e.printStackTrace();
                     }
                 }
@@ -90,6 +92,7 @@ public class DisplayMovieActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
 
                 Toast.makeText(DisplayMovieActivity.this, "trailer is not found", Toast.LENGTH_SHORT).show();
+                 finish();
 
             }
         });
