@@ -1,6 +1,7 @@
 package com.tacheyourself.mymovie.Model;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import android.content.Intent;
@@ -44,6 +45,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.Holder> {
     }
 
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         holder.movieTitle.setText(_movies.get(position).getTitle());

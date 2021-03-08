@@ -81,12 +81,14 @@ public class AdminActivity extends AppCompatActivity {
                                     JSONObject jsonObject = jsonResultArray.getJSONObject(i);
                                     String yearString = jsonObject.getString("release_date");
                                     int year = 0;
+                                    int id = 0;
                                     if(!yearString.equals(""))
                                     year = Integer.parseInt(jsonObject.getString("release_date").substring(0, 4));
+                                    id = Integer.parseInt(jsonObject.getString("id"));
                                     Log.d("movie", i + " : " + year);
                                     String ImageURL = "https://image.tmdb.org/t/p/w500" + jsonObject.getString("poster_path");
                                     //Log.d("result" + i, jsonObject.toString());
-                                    Movie movie = new Movie(jsonObject.getString("title"),
+                                    Movie movie = new Movie(id,jsonObject.getString("title"),
                                             jsonObject.getString("overview"), jsonObject.getString("original_language"),
                                             ImageURL, year, null);
                                     movies.add(movie);
