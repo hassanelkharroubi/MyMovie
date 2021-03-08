@@ -27,13 +27,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class AddMovieActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddMovieActivity extends AppCompatActivity {
 
     Button addToDB,mTrailerBtn;
     EditText link;
@@ -44,11 +48,16 @@ public class AddMovieActivity extends AppCompatActivity implements View.OnClickL
 
     Movie movie;
 
+    String TrailerURL = "";
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_movie);
+        movie = (Movie) getIntent().getSerializableExtra("movie");
+
+        new Thread(new Trailer()).start();
 
         image = findViewById(R.id.movieImage);
         Title = findViewById(R.id.movieTitle);
@@ -57,9 +66,6 @@ public class AddMovieActivity extends AppCompatActivity implements View.OnClickL
         link = findViewById(R.id.link);
         addToDB = findViewById(R.id.addToDB);
         mTrailerBtn=findViewById(R.id.trailer);
-        mTrailerBtn.setOnClickListener(this);
-
-        movie = (Movie) getIntent().getSerializableExtra("movie");
 
         Title.setText(movie.getTitle());
         year.setText(Integer.toString(movie.getYear()));
@@ -117,18 +123,81 @@ public class AddMovieActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
+        mTrailerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddMovieActivity.this,DisplayMovieActivity.class);
+                intent.putExtra("trailer",TrailerURL);
+                startActivity(intent);
+            }
+        });
 
     }
 
-    @Override
-    public void onClick(View view) {
 
-        if(view.getId() ==mTrailerBtn.getId()){
+    class Trailer implements Runnable{
 
-            Intent intent = new Intent(this,DisplayMovieActivity.class);
-            intent.putExtra("id",movie.getImdbID());
+        @Override
+        public void run() {
+            RequestQueue requestQueue= Volley.newRequestQueue(getBaseContext());
+            String EncodedQuery = "https://api.themoviedb.org/3/movie/"+movie.getId()+"?api_key=" + Utils.API_KEY;
 
+            StringRequest stringRequest=new StringRequest(EncodedQuery, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    try {
+                        JSONObject QueryResult = new JSONObject(response);
+                        String ImdbID = QueryResult.getString("imdb_id");
+                        movie.setImdbID(ImdbID);
+
+                        {
+                            RequestQueue CrawlerRequestQueue= Volley.newRequestQueue(getBaseContext());
+                            String Crawler = Utils.URLHOST + "test.php?ImdbID="+ImdbID;
+                            Log.d("urli",Crawler);
+
+                            StringRequest trailerUrlRequest=new StringRequest(Crawler, new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    if(!response.equals("NOT FOUND")) {
+                                        TrailerURL = response;
+                                        Toast.makeText(AddMovieActivity.this, response, Toast.LENGTH_SHORT).show();
+                                        //mTrailerBtn.setEnabled(true);
+                                    }
+                                    else {
+                                        mTrailerBtn.setEnabled(false);
+                                    }
+
+                                }
+                            }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    mTrailerBtn.setEnabled(false);
+                                    Toast.makeText(AddMovieActivity.this, "Trailer Error : " + error.toString(), Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+                            CrawlerRequestQueue.add(trailerUrlRequest);
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    mTrailerBtn.setEnabled(false);
+                    Toast.makeText(AddMovieActivity.this, "imdb id : " + error.toString(), Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            requestQueue.add(stringRequest);
         }
-
     }
 }
