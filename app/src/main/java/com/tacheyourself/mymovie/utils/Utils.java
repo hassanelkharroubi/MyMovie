@@ -14,6 +14,12 @@ public class Utils {
     public static final String URLHOST ="https://wisdcom.000webhostapp.com/scripts/";
     public static final String API_KEY = "066896fd01b3125f675c785d1ea214c7";
     public static final String API_SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY +"&query=";
+    public static final String URL_TRAILER="https://wisdcom.000webhostapp.com/scripts/scrapping/trailer.php?movieId=";
+    public static String getTrailer(String movieId){
+
+        return URL_TRAILER+movieId;
+
+    }
 
     
 }

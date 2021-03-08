@@ -123,10 +123,14 @@ public class AddMovieActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
 
+
+
         if(view.getId() ==mTrailerBtn.getId()){
+            Log.d("Add","clicked clicked");
 
             Intent intent = new Intent(this,DisplayMovieActivity.class);
-            intent.putExtra("id",movie.getImdbID());
+            intent.putExtra("id","tt097619");
+            startActivity(intent);
 
         }
 
