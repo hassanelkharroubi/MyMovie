@@ -33,9 +33,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class AddMovieActivity extends AppCompatActivity {
+public class AddMovieActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button addToDB;
+    Button addToDB,mTrailerBtn;
     EditText link;
     TextView Title;
     TextView year;
@@ -56,6 +56,8 @@ public class AddMovieActivity extends AppCompatActivity {
         overview = findViewById(R.id.desc);
         link = findViewById(R.id.link);
         addToDB = findViewById(R.id.addToDB);
+        mTrailerBtn=findViewById(R.id.trailer);
+        mTrailerBtn.setOnClickListener(this);
 
         movie = (Movie) getIntent().getSerializableExtra("movie");
 
@@ -115,6 +117,18 @@ public class AddMovieActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if(view.getId() ==mTrailerBtn.getId()){
+
+            Intent intent = new Intent(this,DisplayMovieActivity.class);
+            intent.putExtra("id",movie.getId());
+
+        }
 
     }
 }

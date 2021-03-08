@@ -2,7 +2,6 @@ package com.tacheyourself.mymovie.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.tacheyourself.mymovie.Model.Movie;
 import com.tacheyourself.mymovie.Model.ResultAdapter;
@@ -23,9 +21,7 @@ import com.tacheyourself.mymovie.utils.Utils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +88,7 @@ public class MovieListActivity extends AppCompatActivity {
                         Log.d("movie",year+"");
 
 
-                            mMovieList.add(new Movie(id,title,description,language,linkMovie,linkImage,year));
+                            mMovieList.add(new Movie(id,title,description,language,linkMovie,linkImage,year, null));
 
 
 

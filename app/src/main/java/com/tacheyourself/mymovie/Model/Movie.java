@@ -10,14 +10,23 @@ public class Movie implements Serializable {
     private String mLanguage;
     private String mLinkMovie;
     private String mLinkImage;
+    private String mImdbID;
     private int mYear;
 
+
+    public String getImdbID() {
+        return mImdbID;
+    }
+
+    public void setImdbID(String imdbID) {
+        mImdbID = imdbID;
+    }
 
     public Movie(){
 
     }
 
-    public Movie(int id, String title, String description, String language, String linkMovie, String linkImage, int year) {
+    public Movie(int id, String title, String description, String language, String linkMovie, String linkImage, int year, String imdbID) {
         mId = id;
         mTitle = title;
         mDescription = description;
@@ -25,14 +34,16 @@ public class Movie implements Serializable {
         mLinkMovie = linkMovie;
         mLinkImage = linkImage;
         mYear = year;
+        mImdbID=imdbID;
     }
 
-    public Movie(String title, String description, String language, String linkImage, int year) {
+    public Movie(String title, String description, String language, String linkImage, int year, String imdbID) {
         mTitle = title;
         mDescription = description;
         mLanguage = language;
         mLinkImage = linkImage;
         mYear = year;
+        mImdbID=imdbID;
     }
 
     public int getId() {

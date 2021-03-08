@@ -102,4 +102,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movieImage" />
 
+    <Button
+        android:id="@+id/trailer"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/logo"
+        android:text="trailer"
+        android:textColor="@color/year"
+        app:layout_constraintStart_toEndOf="@+id/DescL"
+        app:layout_constraintTop_toBottomOf="@+id/movieTitle" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

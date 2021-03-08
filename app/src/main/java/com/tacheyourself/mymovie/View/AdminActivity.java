@@ -1,14 +1,11 @@
 package com.tacheyourself.mymovie.View;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +28,6 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Base64;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -92,7 +88,7 @@ public class AdminActivity extends AppCompatActivity {
                                     //Log.d("result" + i, jsonObject.toString());
                                     Movie movie = new Movie(jsonObject.getString("title"),
                                             jsonObject.getString("overview"), jsonObject.getString("original_language"),
-                                            ImageURL, year);
+                                            ImageURL, year, null);
                                     movies.add(movie);
                                     resultAdapter.notifyDataSetChanged();
                                 }
