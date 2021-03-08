@@ -19,6 +19,7 @@ import java.net.URL;
 public class DisplayMovieActivity extends AppCompatActivity {
 
     private VideoView mVideoView;
+    private String mLink;
 
 
 
@@ -35,8 +36,15 @@ public class DisplayMovieActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         String url=getIntent().getStringExtra("link");
-        Log.d("movie",url);
-        mVideoView.setVideoPath(url);
+       if(getIntent().hasExtra("id")){
+           mLink=getIntent().getStringExtra("id");
+
+       }
+       if(getIntent().hasExtra("link")){
+           mLink=getIntent().getStringExtra("link");
+
+       }
+        mVideoView.setVideoPath(mLink);
         mVideoView.setMediaController(new MediaController(this));
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 

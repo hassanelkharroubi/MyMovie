@@ -126,7 +126,7 @@ public class AddMovieActivity extends AppCompatActivity implements View.OnClickL
         if(view.getId() ==mTrailerBtn.getId()){
 
             Intent intent = new Intent(this,DisplayMovieActivity.class);
-            intent.putExtra("id",movie.getId());
+            intent.putExtra("id",movie.getImdbID());
 
         }
 
