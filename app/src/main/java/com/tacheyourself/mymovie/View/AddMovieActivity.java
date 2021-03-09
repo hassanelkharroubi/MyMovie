@@ -58,7 +58,11 @@ public class AddMovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_movie);
         movie = (Movie) getIntent().getSerializableExtra("movie");
 
+        mTrailerBtn=findViewById(R.id.trailer);
+        mTrailerBtn.setEnabled(false);
+
         new Thread(new Trailer()).start();
+
 
         image = findViewById(R.id.movieImage);
         Title = findViewById(R.id.movieTitle);
@@ -66,7 +70,7 @@ public class AddMovieActivity extends AppCompatActivity {
         overview = findViewById(R.id.desc);
         link = findViewById(R.id.link);
         addToDB = findViewById(R.id.addToDB);
-        mTrailerBtn=findViewById(R.id.trailer);
+
 
         Title.setText(movie.getTitle());
         year.setText(Integer.toString(movie.getYear()));
@@ -160,18 +164,21 @@ public class AddMovieActivity extends AppCompatActivity {
                             JsonObjectRequest trailerUrlRequest=new JsonObjectRequest(Crawler, null,new Response.Listener<JSONObject>() {
                                 @Override
                                 public void onResponse(JSONObject response) {
-                                    if(!response.has("trailer")) {
+                                    if(response.has("trailer")) {
                                         try {
                                             TrailerURL = response.getString("trailer");
-                                            Toast.makeText(AddMovieActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(AddMovieActivity.this, "Trailer has loaded successfully", Toast.LENGTH_SHORT).show();
+                                            mTrailerBtn.setEnabled(true);
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                             mTrailerBtn.setEnabled(false);
+                                            Toast.makeText(AddMovieActivity.this, "Trailer not found", Toast.LENGTH_SHORT).show();
                                         }
 
                                     }
                                     else {
                                         mTrailerBtn.setEnabled(false);
+                                        Toast.makeText(AddMovieActivity.this, "Trailer not found", Toast.LENGTH_SHORT).show();
                                     }
 
                                 }
@@ -179,7 +186,7 @@ public class AddMovieActivity extends AppCompatActivity {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     mTrailerBtn.setEnabled(false);
-                                    Toast.makeText(AddMovieActivity.this, "Trailer Error : " + error.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddMovieActivity.this, "Trailer not found", Toast.LENGTH_SHORT).show();
 
                                 }
                             });
