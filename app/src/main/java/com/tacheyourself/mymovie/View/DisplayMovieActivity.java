@@ -3,11 +3,14 @@ package com.tacheyourself.mymovie.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.pm.ActivityInfo;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -27,6 +30,7 @@ public class DisplayMovieActivity extends AppCompatActivity {
     private VideoView mVideoView;
     private String mLink;
     private RequestQueue mRequestQueue;
+    ProgressBar spinnerView ;
 
 
 
@@ -40,65 +44,37 @@ public class DisplayMovieActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_display_movie);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         mVideoView=findViewById(R.id.videoView);
+        spinnerView= findViewById(R.id.my_spinner);
+
+        final MediaPlayer.OnInfoListener onInfoToPlayStateListener = new MediaPlayer.OnInfoListener() {
+
+            @Override
+            public boolean onInfo(MediaPlayer mp, int what, int extra) {
+                if (MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START == what) {
+                    spinnerView.setVisibility(View.GONE);
+                }
+                if (MediaPlayer.MEDIA_INFO_BUFFERING_START == what) {
+                    spinnerView.setVisibility(View.VISIBLE);
+                }
+                if (MediaPlayer.MEDIA_INFO_BUFFERING_END == what) {
+                    //spinnerView.setVisibility(View.VISIBLE);
+                }
+                return false;
+            }
+        };
+        mVideoView.setOnInfoListener(onInfoToPlayStateListener);
+
         getSupportActionBar().hide();
 
-        String url=getIntent().getStringExtra("link");
-       if(getIntent().hasExtra("id")){
-           mLink= Utils.getTrailer(getIntent().getStringExtra("id"));
-           getVideo(mLink);
-           Log.d("Display",mLink);
 
-       }
        if(getIntent().hasExtra("link")){
            mLink=getIntent().getStringExtra("link");
            startVideo(mLink);
 
-
        }
-
-
-
-
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-
-    }
-
-    private void getVideo(String url){
-
-        mRequestQueue= Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObject=new JsonObjectRequest(url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-
-                if(response.has("trailer")){
-                    try {
-                        Log.d("Display","yes it has");
-                        mLink=response.getString("trailer");
-                        startVideo(mLink);
-                    } catch (JSONException e) {
-
-                        Log.d("Display","error json");
-                        Toast.makeText(DisplayMovieActivity.this, "trailer is not found", Toast.LENGTH_SHORT).show();
-                        finish();
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                Toast.makeText(DisplayMovieActivity.this, "trailer is not found", Toast.LENGTH_SHORT).show();
-                 finish();
-
-            }
-        });
-
-        mRequestQueue.add(jsonObject);
-
 
     }
 
